@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>More Info</title>
+  <title>Author Insights</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -10,7 +10,7 @@
   <!-- All content goes here -->
   <div id="all-contents">
     <nav>
-      <h1>Your Name's Amazing Website</h1>
+      <h1>Alex Fajardo Dev Of NotRealweb</h1>
       <ul id="nav-ul">
         <li class="nav-li">
           <a href="index.html">Home</a>
@@ -49,3 +49,289 @@
 <li>
   <a href="projects/runtime/">Runtime : Fearless HalleBot goes on a side-scrolling adventure!</a>
 </li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archive 07</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Courier New, monospace;
+}
+
+body{
+    background:#000;
+    color:#0f0;
+    overflow-x:hidden;
+    animation:flicker 8s infinite;
+}
+
+@keyframes flicker{
+    0%,100%{opacity:1;}
+    2%{opacity:.95;}
+    4%{opacity:.8;}
+    5%{opacity:1;}
+}
+
+.scanline{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background:
+    repeating-linear-gradient(
+        transparent,
+        transparent 2px,
+        rgba(0,255,0,.03) 4px
+    );
+}
+
+header{
+    text-align:center;
+    padding:80px 20px;
+}
+
+h1{
+    font-size:4rem;
+    text-shadow:0 0 20px lime;
+}
+
+.subtitle{
+    color:#888;
+    margin-top:15px;
+}
+
+.warning{
+    border:1px solid #0f0;
+    width:80%;
+    margin:40px auto;
+    padding:20px;
+    text-align:center;
+}
+
+.section{
+    max-width:900px;
+    margin:80px auto;
+    padding:20px;
+}
+
+.file{
+    border:1px solid #0f0;
+    margin:20px 0;
+    padding:20px;
+    transition:.3s;
+}
+
+.file:hover{
+    background:#001500;
+    transform:scale(1.02);
+}
+
+.file h3{
+    color:white;
+}
+
+.redacted{
+    background:#000;
+    color:#000;
+    user-select:none;
+}
+
+.redacted:hover{
+    color:red;
+}
+
+.glitch{
+    position:relative;
+    display:inline-block;
+}
+
+.glitch::before,
+.glitch::after{
+    content:attr(data-text);
+    position:absolute;
+    left:0;
+    top:0;
+}
+
+.glitch::before{
+    color:red;
+    transform:translate(-2px,0);
+    opacity:.5;
+}
+
+.glitch::after{
+    color:cyan;
+    transform:translate(2px,0);
+    opacity:.5;
+}
+
+.secret{
+    text-align:center;
+    margin:100px auto;
+    color:#222;
+    transition:2s;
+}
+
+.secret:hover{
+    color:red;
+}
+
+footer{
+    text-align:center;
+    padding:50px;
+    color:#444;
+}
+</style>
+</head>
+
+<body>
+
+<div class="scanline"></div>
+
+<header>
+    <h1 class="glitch" data-text="ARCHIVE 07">ARCHIVE 07</h1>
+    <p class="subtitle">Personal Portfolio • Unauthorized Access Logged</p>
+</header>
+
+<div class="warning">
+    WARNING: Several records are incomplete.<br>
+    Last update: 03:17 AM
+</div>
+
+<section class="section">
+    <h2>Case Files</h2>
+
+    <div class="file">
+        <h3>File #001</h3>
+        <p>Frontend Developer • UI Designer</p>
+        <p>Status: ACTIVE</p>
+    </div>
+
+    <div class="file">
+        <h3>File #002</h3>
+        <p>Project: The Signal</p>
+        <p>
+            Final transmission received:
+            <span class="redacted">DO NOT FOLLOW THE LIGHT</span>
+        </p>
+    </div>
+
+    <div class="file">
+        <h3>File #003</h3>
+        <p>Unknown coordinates discovered.</p>
+        <p>███.████° ██ ████</p>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Recovered Logs</h2>
+
+<pre>
+01:04 AM - static detected
+01:17 AM - signal repeated
+01:23 AM - source identified
+01:24 AM - source disappeared
+
+01:25 AM - "it noticed us"
+</pre>
+
+</section>
+
+<section class="secret">
+    IF YOU CAN READ THIS, YOU WERE NOT SUPPOSED TO.
+</section>
+
+<footer>
+    END OF RECORD<br>
+    Archive will self-correct in 07 days.
+</footer>
+
+<script>
+const messages = [
+"someone opened the file",
+"signal detected",
+"don't trust file #003",
+"archive corruption spreading",
+"who is viewing this?"
+];
+
+setInterval(()=>{
+    document.title =
+      messages[Math.floor(Math.random()*messages.length)];
+},4000);
+
+setTimeout(()=>{
+    alert("Connection to source restored.");
+},6000);
+</script>
+
+</body>
+</html>
+<section class="section">
+<h2>Recovered Evidence</h2>
+
+<div class="file" onclick="openFile(1)">
+    📁 Evidence_01
+</div>
+
+<div class="file" onclick="openFile(2)">
+    📁 Evidence_02
+</div>
+
+<div class="file" onclick="openFile(3)">
+    📁 Message_From_Author
+</div>
+
+<div id="output" class="file" style="display:none;">
+</div>
+</section>
+
+<script>
+function openFile(id){
+
+const output = document.getElementById("output");
+output.style.display = "block";
+
+if(id === 1){
+output.innerHTML = `
+<h3>Evidence 01</h3>
+<p>A torn notebook page was discovered.</p>
+<p>"The answer was never hidden. It was inverted."</p>
+`;
+}
+
+if(id === 2){
+output.innerHTML = `
+<h3>Evidence 02</h3>
+<p>Recovered coordinates:</p>
+<p>52.5200° N, 13.4050° E</p>
+<p>Written beneath:</p>
+<p>"Look where the shadows point."</p>
+`;
+}
+
+if(id === 3){
+output.innerHTML = `
+<h3>Encrypted Message</h3>
+
+<p>
+Gsv xlwv rh uli gsv xlfivv.
+Gsv ziv rh yvsviv.
+R zn hgroo szh.
+</p>
+
+<p style="color:red;">
+Hint: The alphabet may be backwards.
+</p>
+`;
+}
+}
+</script>
