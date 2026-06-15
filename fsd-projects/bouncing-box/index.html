@@ -81,9 +81,9 @@
          */
         function update() {
 
-        
+        moveBoxTo(boardWidth); // Moves box to x-position 200
 
-          
+          moveBoxTo(1000); // Moves box to right edge
         }
 
         /**
@@ -106,3 +106,162 @@
     </script>
   </body>
 </html>
+<script>
+(function () {
+  "use strict";
+  /* global jQuery */
+
+  ////////////////////////////////////////////////////////////////
+  ////////////////// SETUP DO NOT DELETE /////////////////////////
+  ////////////////////////////////////////////////////////////////
+
+  var box = jQuery(".box");
+  var board = jQuery(".board");
+
+  var boardWidth = board.width();
+  var boardHeight = board.height();
+
+  jQuery(window).on("resize", function () {
+    boardWidth = board.width();
+    boardHeight = board.height();
+  });
+
+  setInterval(update, 50);
+  box.on("click", handleBoxClick);
+
+  ////////////////////////////////////////////////////////////////
+  ////////////////// DVD LOGO STYLING ////////////////////////////
+  ////////////////////////////////////////////////////////////////
+
+  box.css({
+    width: "140px",
+    height: "70px",
+    background: "black",
+    color: "white",
+    border: "3px solid white",
+    borderRadius: "10px",
+    fontSize: "36px",
+    fontWeight: "bold",
+    textAlign: "center",
+    lineHeight: "70px",
+    position: "absolute",
+    top: "100px",
+    left: "0px",
+    boxShadow: "0 0 15px white"
+  });
+
+  box.text("DVD");
+
+  ////////////////////////////////////////////////////////////////
+  ////////////////// VARIABLES ///////////////////////////////////
+  ////////////////////////////////////////////////////////////////
+
+  var positionX = 0;
+  var positionY = 100;
+
+  var points = 0;
+
+  var speedX = 10;
+  var speedY = 8;
+
+  ////////////////////////////////////////////////////////////////
+  ////////////////// GAME LOOP ///////////////////////////////////
+  ////////////////////////////////////////////////////////////////
+
+  function update() {
+
+    // Move DVD logo
+    positionX += speedX;
+    positionY += speedY;
+
+    // Right wall
+    if (positionX > boardWidth - box.width()) {
+      speedX *= -1;
+      randomColor();
+    }
+
+    // Left wall
+    if (positionX < 0) {
+      speedX *= -1;
+      randomColor();
+    }
+
+    // Bottom wall
+    if (positionY > boardHeight - box.height()) {
+      speedY *= -1;
+      randomColor();
+    }
+
+    // Top wall
+    if (positionY < 0) {
+      speedY *= -1;
+      randomColor();
+    }
+
+    box.css({
+      left: positionX,
+      top: positionY
+    });
+  }
+
+  ////////////////////////////////////////////////////////////////
+  ////////////////// CLICK EVENT /////////////////////////////////
+  ////////////////////////////////////////////////////////////////
+
+  function handleBoxClick() {
+
+    // Increase score
+    points++;
+
+    // Reset position
+    positionX = 0;
+    positionY = 100;
+
+    // Linear formula from assignment
+    speedX = 3 * points + 10;
+    speedY = 3 * points + 8;
+
+    // Keep moving in current directions
+    if (Math.random() < 0.5) speedX *= -1;
+    if (Math.random() < 0.5) speedY *= -1;
+
+    // Show score briefly
+    box.text(points);
+
+    setTimeout(function () {
+      box.text("DVD");
+    }, 800);
+
+    randomColor();
+  }
+
+  ////////////////////////////////////////////////////////////////
+  ////////////////// COLOR CHANGER ///////////////////////////////
+  ////////////////////////////////////////////////////////////////
+
+  function randomColor() {
+
+    var colors = [
+      "#ff0000",
+      "#00ff00",
+      "#0000ff",
+      "#ffff00",
+      "#ff00ff",
+      "#00ffff",
+      "#ff8800",
+      "#ffffff",
+      "#00ff88",
+      "#ff0088"
+    ];
+
+    var color = colors[Math.floor(Math.random() * colors.length)];
+
+    box.css({
+      color: color,
+      borderColor: color,
+      boxShadow: "0 0 20px " + color
+    });
+  }
+
+})();
+</script>
